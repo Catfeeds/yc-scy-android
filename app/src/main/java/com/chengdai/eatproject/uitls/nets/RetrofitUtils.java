@@ -48,7 +48,6 @@ public class RetrofitUtils {
     public static ApiServer getLoaderServer() {
         return bulid().getApiServer();
     }
-
     /**
      * 获取URL  根据版本切换不同版本
      *

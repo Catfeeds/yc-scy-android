@@ -55,9 +55,7 @@ public class RetrofitUtils {
      * @return
      */
     public static String getBaseURL() {
-//        return "http://118.178.124.16:3501/forward-service/";//测试
-        return "http://121.40.113.128:5301/forward-service/";//线上
-   /*     if (BuildConfig.IS_DEBUG){
+        if (BuildConfig.IS_DEBUG){
 
             return "http://121.43.101.148:9901/forward-service/";//开发
 //        return "http://118.178.124.16:3501/forward-service/";//测试
@@ -66,7 +64,6 @@ public class RetrofitUtils {
 //        return "http://118.178.124.16:3501/forward-service/";//测试
             return "http://121.40.113.128:5301/forward-service/";//线上
         }
-*/
 
 
     }

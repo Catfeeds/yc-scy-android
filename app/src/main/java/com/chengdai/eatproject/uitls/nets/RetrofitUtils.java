@@ -14,7 +14,6 @@ import retrofit2.Retrofit;
  * Created by Administrator on 2016/9/1.
  */
 public class RetrofitUtils {
-
     private static RetrofitUtils retrofitUtils;
 
     private ApiServer apiServer;

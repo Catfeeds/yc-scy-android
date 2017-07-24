@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">姚橙试吃员</string>
+    <string name="update_password">修改密码</string>
+    <string name="txt_my_setting">个人设置</string>
+    <string name="txt_show_price_sign">￥</string>
+    <string name="txt_address">收货地址</string>
+    <string name="txt_set_pay_password">设置支付密码</string>
+    <string name="txt_update_pay_password">修改支付密码</string>
+    <string name="txt_i_to_eat">我要试吃</string>
+</resources>

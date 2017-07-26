@@ -131,6 +131,7 @@ public class RepetTryEatOrderBook extends AbsBaseActivity {
                    if(mPrducet==null){
                        showToast("请选择规格");
                        mBinding.editGoodsNum.setText("");
+                       return;
                    }
 
                    //显示价格  数量和型号单价的乘积
@@ -293,6 +294,9 @@ public class RepetTryEatOrderBook extends AbsBaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if(mGoodsSpecsPicker!=null){
+            mGoodsSpecsPicker.dismiss();
+        }
         mGoodsSpecsPicker=null;
     }
 }

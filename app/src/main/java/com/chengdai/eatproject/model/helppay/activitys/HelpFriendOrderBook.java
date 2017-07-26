@@ -128,7 +128,6 @@ public class HelpFriendOrderBook extends AbsBaseActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-
                 if (!TextUtils.isEmpty(s.toString())) {
                     if (mGoodsData == null || mGoodsData.getProductSpecsList() == null) {
                         showToast("请先选择商品");
@@ -139,6 +138,7 @@ public class HelpFriendOrderBook extends AbsBaseActivity {
                     if(mPrducet==null){
                         showToast("请选择规格");
                         mBinding.editGoodsNum.setText("");
+                        return;
                     }
 
                     //显示价格  数量和型号单价的乘积
@@ -298,6 +298,9 @@ public class HelpFriendOrderBook extends AbsBaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if(mGoodsSpecsPicker!=null){
+            mGoodsSpecsPicker.dismiss();
+        }
         mGoodsSpecsPicker = null;
     }
 

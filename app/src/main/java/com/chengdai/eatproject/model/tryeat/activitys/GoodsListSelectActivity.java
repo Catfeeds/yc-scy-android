@@ -96,7 +96,7 @@ public class GoodsListSelectActivity extends BaseRefreshActivity<GoodsListModel.
                     });
 
                     ImageView img=helper.getView(R.id.img_goods_title);
-                    ImgUtils.loadImg(mContext, MyConfig.IMGURL+item.getSplitAdvPic(),img);
+                    ImgUtils.loadImg(GoodsListSelectActivity.this, MyConfig.IMGURL+item.getSplitAdvPic(),img);
                 }
             };
     }

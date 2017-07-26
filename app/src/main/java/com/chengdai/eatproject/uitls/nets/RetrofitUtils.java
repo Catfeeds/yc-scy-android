@@ -14,6 +14,7 @@ import retrofit2.Retrofit;
  * Created by Administrator on 2016/9/1.
  */
 public class RetrofitUtils {
+
     private static RetrofitUtils retrofitUtils;
 
     private ApiServer apiServer;
@@ -47,13 +48,16 @@ public class RetrofitUtils {
     public static ApiServer getLoaderServer() {
         return bulid().getApiServer();
     }
+
     /**
      * 获取URL  根据版本切换不同版本
      *
      * @return
      */
     public static String getBaseURL() {
-        if (BuildConfig.IS_DEBUG){
+//        return "http://118.178.124.16:3501/forward-service/";//测试
+        return "http://121.40.113.128:5301/forward-service/";//线上
+   /*     if (BuildConfig.IS_DEBUG){
 
             return "http://121.43.101.148:9901/forward-service/";//开发
 //        return "http://118.178.124.16:3501/forward-service/";//测试
@@ -62,6 +66,7 @@ public class RetrofitUtils {
 //        return "http://118.178.124.16:3501/forward-service/";//测试
             return "http://121.40.113.128:5301/forward-service/";//线上
         }
+*/
 
 
     }

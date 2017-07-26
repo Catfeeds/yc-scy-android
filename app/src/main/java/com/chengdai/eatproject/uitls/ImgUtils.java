@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.util.Util;
 import com.chengdai.eatproject.R;
 import com.chengdai.eatproject.uitls.glidetransforms.GlideCircleBorderTransform;
 import com.chengdai.eatproject.uitls.glidetransforms.GlideCircleTransform;
@@ -30,7 +31,11 @@ public class ImgUtils {
         }
         LogUtil.E("图片"+imgid);
 
-        Glide.with(context).load(imgid).placeholder(R.mipmap.photo_default).error(R.mipmap.photo_default).transform(new GlideCircleTransform(context)).into(img);
+        try {
+            Glide.with(context).load(imgid).placeholder(R.mipmap.photo_default).error(R.mipmap.photo_default).transform(new GlideCircleTransform(context)).into(img);
+        }catch (Exception e){
+            LogUtil.E("图片加载错误");
+        }
     }
 
 
@@ -43,7 +48,12 @@ public class ImgUtils {
 
         LogUtil.E("图片"+imgid);
 
-        Glide.with(context).load(imgid).placeholder(R.mipmap.default_pic).error(R.mipmap.default_pic).into(img);
+        try {
+            Glide.with(context).load(imgid).placeholder(R.mipmap.default_pic).error(R.mipmap.default_pic).into(img);
+        }catch (Exception e){
+            LogUtil.E("图片加载错误");
+        }
+
     }
 
 

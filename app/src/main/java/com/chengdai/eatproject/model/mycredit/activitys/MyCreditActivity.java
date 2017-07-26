@@ -134,6 +134,7 @@ public class MyCreditActivity extends AbsBaseActivity{
         map.put("toCurrency","CB");
         map.put("mobile",mBinding.editPhone.getText().toString());
         map.put("amount",StringUtils.getRequestPrice(Double.valueOf(mBinding.edtLimit.getText().toString())));
+        map.put("token",SPUtilHelpr.getUserToken());
 
        mSubscription.add( RetrofitUtils.getLoaderServer().sendCredit("802412", StringUtils.getJsonToString(map))
                 .compose(RxTransformerHelper.applySchedulerResult(this))

@@ -229,6 +229,9 @@ public class TryEatOrderBook extends AbsBaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if(mGoodsSpecsPicker!=null){
+            mGoodsSpecsPicker.dismiss();
+        }
         mGoodsSpecsPicker=null;
     }
 }

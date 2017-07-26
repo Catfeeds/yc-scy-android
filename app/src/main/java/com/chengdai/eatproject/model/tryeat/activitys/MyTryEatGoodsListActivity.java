@@ -114,7 +114,7 @@ public class MyTryEatGoodsListActivity extends BaseRefreshActivity<GoodsListMode
 
                    helper.setText(R.id.tv_goods_title,item.getName());
                     ImageView img=helper.getView(R.id.img_goods_title);
-                    ImgUtils.loadImg(mContext, MyConfig.IMGURL+item.getSplitAdvPic(),img);
+                    ImgUtils.loadImg(MyTryEatGoodsListActivity.this, MyConfig.IMGURL+item.getSplitAdvPic(),img);
 
                     helper.setText(R.id.tv_goods_slogan,item.getSlogan());
 

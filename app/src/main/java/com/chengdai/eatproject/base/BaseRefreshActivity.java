@@ -9,6 +9,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chengdai.eatproject.R;
 import com.chengdai.eatproject.databinding.EmptyViewBinding;
 import com.chengdai.eatproject.databinding.LayoutCommonRecyclerRefreshBinding;
+import com.chengdai.eatproject.uitls.LogUtil;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener;
 
@@ -134,7 +135,6 @@ public abstract class BaseRefreshActivity<T> extends AbsBaseActivity{
                     mAdapter.notifyDataSetChanged();
                 }
             }
-
         }
 
         if(mDataList.size()==0){

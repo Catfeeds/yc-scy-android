@@ -81,20 +81,22 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:layout_marginTop="15dp"
                     android:layout_width="153dp"
                     android:layout_height="match_parent"
-                    android:gravity="center_vertical"
                     android:paddingLeft="15dp"
                     android:text="省市区"
                     android:textColor="@color/fontColor_gray"
                     android:textSize="15sp" />
 
                 <TextView
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
                     android:id="@+id/txt_address"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -115,27 +117,28 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:layout_marginTop="15dp"
                     android:layout_width="153dp"
                     android:layout_height="match_parent"
-                    android:gravity="center_vertical"
                     android:paddingLeft="15dp"
                     android:text="详细地址"
                     android:textColor="@color/fontColor_gray"
                     android:textSize="15sp" />
 
                 <EditText
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
                     android:id="@+id/edt_detailed"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginRight="15dp"
                     android:background="@null"
                     android:hint="请输入详细地址"
-                    android:singleLine="true"
                     android:textColor="#333333"
                     android:textColorHint="@color/fontColor_hint"
                     android:textSize="15sp" />

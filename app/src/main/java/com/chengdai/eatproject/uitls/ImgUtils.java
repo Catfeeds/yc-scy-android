@@ -23,8 +23,10 @@ import com.chengdai.eatproject.widget.appmanager.MyConfig;
  */
 public class ImgUtils {
 
-    public static void  loadLogo(Context context,String imgid,ImageView img){
-
+    public static void  loadLogo(Activity context,String imgid,ImageView img){
+        if (!AppUtils.isActivityExist(context)){
+            return;
+        }
         if(context==null || img==null)
         {
             return;
@@ -39,7 +41,13 @@ public class ImgUtils {
     }
 
 
-    public static void  loadImg(Context context,String imgid,ImageView img){
+    public static void  loadImg(Activity context,String imgid,ImageView img){
+
+        if (!AppUtils.isActivityExist(context)){
+
+            LogUtil.E("图片加载界面销毁");
+            return;
+        }
 
         if(context==null || img==null)
         {
@@ -55,7 +63,5 @@ public class ImgUtils {
         }
 
     }
-
-
 
 }

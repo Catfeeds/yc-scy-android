@@ -129,6 +129,8 @@
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
                     android:layout_weight="1"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:gravity="center_vertical"
                     android:textColor="@color/fontColor_gray"
                     android:textSize="14sp" />

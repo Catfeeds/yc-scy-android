@@ -30,12 +30,6 @@ public class WelcomeAcitivity extends Activity {
         // 用于第一次安装APP，进入到除这个启动activity的其他activity，点击home键，再点击桌面启动图标时，
         // 系统会重启此activty，而不是直接打开之前已经打开过的activity，因此需要关闭此activity
 
-        /*
-        if (!isTaskRoot()) {
-            finish();
-            return;
-        }*/
-
        if (getIntent()!=null && (getIntent().getFlags() & Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT) != 0) {
                 finish();
                 return;

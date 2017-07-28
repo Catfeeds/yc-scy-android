@@ -100,7 +100,7 @@ public class FriendListActivity extends BaseRefreshActivity<MyFriendListModel.Li
                 ImageView img=helper.getView(R.id.img_goods_title);
 
                if(item.getUserExt()!=null){
-                   ImgUtils.loadLogo(mContext,item.getUserExt().getPhoto(),img);
+                   ImgUtils.loadLogo(FriendListActivity.this,item.getUserExt().getPhoto(),img);
                }
 
                helper.setOnClickListener(R.id.btn_state,v -> {

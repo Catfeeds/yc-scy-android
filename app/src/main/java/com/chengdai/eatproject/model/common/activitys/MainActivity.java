@@ -165,13 +165,10 @@ public class MainActivity extends AbsBaseActivity {
 
                 .subscribe(userInfo->{
                     mUserInfoData=userInfo;
-                    LogUtil.E("错误"+StringUtils.showPrice(new BigDecimal(1047990)));
-                    LogUtil.E("错误"+StringUtils.showPrice(new BigDecimal(1048000)));
-                    LogUtil.E("错误"+StringUtils.showPrice(new BigDecimal(9500000)));
 
                     mBinding.txtMoney.setText(StringUtils.showPrice(userInfo.getAmount()));
                     if(mUserInfoData.getUserExt()!=null)
-                      ImgUtils.loadLogo(this, MyConfig.IMGURL+mUserInfoData.getUserExt().getPhoto(),mBinding.imgPhoto);
+                      ImgUtils.loadLogo(MainActivity.this, MyConfig.IMGURL+mUserInfoData.getUserExt().getPhoto(),mBinding.imgPhoto);
 
                     mBinding.tvLevel.setText(StringUtils.getLevelInfo(userInfo.getLevel()));
 

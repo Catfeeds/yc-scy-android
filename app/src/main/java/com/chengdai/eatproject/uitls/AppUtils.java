@@ -1,5 +1,6 @@
 package com.chengdai.eatproject.uitls;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -95,6 +96,36 @@ public class AppUtils {
         }
     }
 
+
+    /**
+     * 判断一个Activity 是否存在
+     *
+     * @param clz
+     * @return
+     */
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static boolean isActivityExist(Activity clz) {
+
+        Activity activity = clz;
+        if (activity == null) {
+           return false;
+        }
+
+        if(activity.isFinishing()){
+           return false;
+        }
+
+        if (!getAndroidVersion(Build.VERSION_CODES.JELLY_BEAN_MR1)) //如果版本小于 4.2
+        {
+            return true;
+        }
+
+        if (activity.isDestroyed()) {
+          return false;
+         }
+
+        return true;
+    }
 
 
     /*获取版本信息*/

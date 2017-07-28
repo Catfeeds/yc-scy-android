@@ -62,7 +62,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             loadingDialog.dismiss();
             loadingDialog = null;
         }
-        if (mSubscription != null && !mSubscription.isDisposed()) {
+        if (mSubscription != null) {
             mSubscription.dispose();
             mSubscription.clear();
         }

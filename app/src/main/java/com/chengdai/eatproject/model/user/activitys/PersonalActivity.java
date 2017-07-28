@@ -82,7 +82,7 @@ public class PersonalActivity extends AbsBaseActivity {
 
         mBinding.txtPhone.setText(mUserInfoData.getMobile());
         if(mUserInfoData.getUserExt()!=null)
-            ImgUtils.loadLogo(this, MyConfig.IMGURL+mUserInfoData.getUserExt().getPhoto(),mBinding.imgPhoto);
+            ImgUtils.loadLogo(PersonalActivity.this, MyConfig.IMGURL+mUserInfoData.getUserExt().getPhoto(),mBinding.imgPhoto);
 
         if("0".equals(mUserInfoData.getTradepwdFlag())){  //没有设置支付密码
            mBinding.tvPayPassword.setText(getString(R.string.txt_set_pay_password));

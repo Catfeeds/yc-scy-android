@@ -5,7 +5,6 @@ package com.chengdai.eatproject.model.common.model;
  */
 
 public class EventBusModel {
-
     private String tag;
 
     private int evInt;

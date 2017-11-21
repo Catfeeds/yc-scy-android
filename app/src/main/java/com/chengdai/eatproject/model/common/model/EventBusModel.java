@@ -9,7 +9,6 @@ public class EventBusModel {
     private int evInt;
 
     private String evInfo;
-
     private boolean evBoolean;
 
     public String getTag() {

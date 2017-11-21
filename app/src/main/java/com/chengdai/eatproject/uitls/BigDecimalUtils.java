@@ -15,7 +15,7 @@ public class BigDecimalUtils {
 
         return 0;
     }
-    //除法
+ //减法
     public static BigDecimal subtract(BigDecimal b,BigDecimal b1){
         if(b!=null && b1!=null){
             return b.subtract(b1);

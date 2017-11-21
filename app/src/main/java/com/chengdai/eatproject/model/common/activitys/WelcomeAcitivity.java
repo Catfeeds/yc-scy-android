@@ -33,7 +33,7 @@ public class WelcomeAcitivity extends Activity {
        if (getIntent()!=null && (getIntent().getFlags() & Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT) != 0) {
                 finish();
                 return;
-            }
+       }
 
         mSubscription = new CompositeDisposable();
         setContentView(R.layout.activity_welcom);
@@ -44,7 +44,6 @@ public class WelcomeAcitivity extends Activity {
                     if (SPUtilHelpr.isLoginNoStart()) {
                         MainActivity.open(this);
                     } else {
-
                         LoginActivity.open(this);
                     }
                     finish();

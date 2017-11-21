@@ -25,7 +25,7 @@ public class RxTransformerListHelper {
 
     public static final String REQUESTOK = "0";   //请求后台成功
 
-    public static final String REQUESTFECODE3= "3";
+    public static final String REQUESTFECODE3 = "3";
 
     public static final String REQUESTFECODE4 = "4";//重新登录
 
@@ -56,7 +56,7 @@ public class RxTransformerListHelper {
                     }
 
                 }
-                LogUtil.E("网络请求"+isSuccess+responseCode);
+                LogUtil.E("网络请求" + isSuccess + responseCode);
                 return isSuccess;
             } else {
                 return false;
@@ -73,24 +73,24 @@ public class RxTransformerListHelper {
 
     /**
      * 错误提醒处理
+     *
      * @param context
      * @param errorVerify
      * @param <T>
      * @return
      */
-    private static  <T> Function<Throwable,T> doError(Context context,ErrorVerify errorVerify) {
+    private static <T> Function<Throwable, T> doError(Context context, ErrorVerify errorVerify) {
         return throwable -> {
             throwable.printStackTrace();
-            errorVerify.call("0",throwable.toString());
+            errorVerify.call("0", throwable.toString());
             if (errorVerify != null) {
-                if(!NetUtils.isNetworkConnected())
-                {
+                if (!NetUtils.isNetworkConnected()) {
                     errorVerify.call(NET_ERROR, "暂无网络");
 
-                }else {
-                    if(LogUtil.isLog){
-                        errorVerify.call("0",throwable.toString());
-                    }else{
+                } else {
+                    if (LogUtil.isLog) {
+                        errorVerify.call("0", throwable.toString());
+                    } else {
                         errorVerify.call("0", "未知错误");
                     }
                 }
@@ -141,9 +141,9 @@ public class RxTransformerListHelper {
                 })
                 .subscribeOn(AndroidSchedulers.mainThread()) //指定 doOnSubscribe工作线程
                 .filter(verifyNotEmpty())
-                .filter(verifyBusiness(errorVerify))
                 .filter(verifyResultCode(context))
-                .onErrorReturn(doError(context,errorVerify))
+                .filter(verifyBusiness(errorVerify))
+                .onErrorReturn(doError(context, errorVerify))
                 .doFinally(() -> {
                     if (context instanceof BaseActivity)
                         ((BaseActivity) context).disMissLoading();

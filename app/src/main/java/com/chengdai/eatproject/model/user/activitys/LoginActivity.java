@@ -28,6 +28,7 @@ import java.util.Map;
  */
 public class LoginActivity extends AbsBaseActivity {
 
+
     private ActivityLoginBinding mBinding;
     /**
      * 打开当前页面

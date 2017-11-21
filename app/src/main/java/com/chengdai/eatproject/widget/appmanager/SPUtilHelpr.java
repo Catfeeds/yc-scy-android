@@ -1,11 +1,9 @@
 package com.chengdai.eatproject.widget.appmanager;
 
 
-import android.content.Context;
 import android.text.TextUtils;
 
 import com.chengdai.eatproject.base.BaseApplication;
-import com.chengdai.eatproject.uitls.OnLoginFailure;
 import com.chengdai.eatproject.uitls.SPUtils;
 
 /**
@@ -127,19 +125,6 @@ public class SPUtilHelpr {
 		SPUtils.put(BaseApplication.getInstance(),"LOCATIONINFRESET",s);
 	}
 
-
-	/**
-	 * 判断用户是否登录
-	 * @return
-	 */
-	public static boolean isLogin(Context context){
-		if(TextUtils.isEmpty(getUserToken())){
-			OnLoginFailure.startDoFailure(context,"请先登录");
-			return false;
-		}
-
-		return true;
-	}
 
 	/**
 	 * 判断用户是否登录

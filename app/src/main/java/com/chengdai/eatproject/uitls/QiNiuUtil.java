@@ -144,9 +144,6 @@ public class QiNiuUtil {
     }
 
 
-
-
-
     public static String getImageWidthHeight(String path){
         BitmapFactory.Options options = new BitmapFactory.Options();
 
@@ -185,40 +182,6 @@ public class QiNiuUtil {
         void onSuccess(String key, ResponseInfo info, JSONObject res);
         void onFal(String info);
     }
-
-
-/*
-    public void getUpimg(final String imagePath) {
-        new Thread() {
-            public void run() {
-                // 图片上传到七牛 重用 uploadManager。一般地，只需要创建一个 uploadManager 对象
-                UploadManager uploadManager = new UploadManager();
-                uploadManager.put(imagePath, null, Const.uptoken,
-                        new UpCompletionHandler() {
-                            @Override
-                            public void complete(String key, ResponseInfo info,
-                                                 JSONObject res) {
-                                // res 包含hash、key等信息，具体字段取决于上传策略的设置。
-                                Log.i("qiniu", key + ",\r\n " + info + ",\r\n "
-                                        + res);
-                                try {
-                                    // 七牛返回的文件名
-                                    upimg = res.getString("key");
-                                    upimg_key_list.add(upimg);//将七牛返回图片的文件名添加到list集合中
-                                    //list集合中图片上传完成后，发送handler消息回主线程进行其他操作
-                                    if (upimg_key_list.size() == dataList
-                                            .size()) {
-                                        mHandler.sendEmptyMessage(0x333);
-                                    }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }, null);
-            }
-        }.start();
-    }
-*/
 
 
 }

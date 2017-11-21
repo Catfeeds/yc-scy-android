@@ -15,7 +15,6 @@ import com.chengdai.eatproject.model.common.activitys.IntroductionActivity;
 import com.chengdai.eatproject.model.common.model.EventBusModel;
 import com.chengdai.eatproject.model.user.model.UserInfo;
 import com.chengdai.eatproject.uitls.ImgUtils;
-import com.chengdai.eatproject.uitls.LogUtil;
 import com.chengdai.eatproject.uitls.QiNiuUtil;
 import com.chengdai.eatproject.uitls.StringUtils;
 import com.chengdai.eatproject.uitls.ToastUtil;

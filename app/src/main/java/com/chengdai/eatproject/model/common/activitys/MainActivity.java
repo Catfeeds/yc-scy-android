@@ -23,6 +23,7 @@ import com.chengdai.eatproject.uitls.LogUtil;
 import com.chengdai.eatproject.uitls.StringUtils;
 import com.chengdai.eatproject.uitls.nets.RetrofitUtils;
 import com.chengdai.eatproject.uitls.nets.RxTransformerHelper;
+import com.chengdai.eatproject.uitls.update.UpdateManager;
 import com.chengdai.eatproject.widget.appmanager.MyConfig;
 import com.chengdai.eatproject.widget.appmanager.SPUtilHelpr;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -39,15 +40,19 @@ public class MainActivity extends AbsBaseActivity {
 
     private ActivityMainBinding mBinding;
     private UserInfo mUserInfoData;
+
+    private UpdateManager updateManager;
+
     /**
      * 打开当前页面
+     *
      * @param context
      */
-    public static void open(Context context){
-        if(context==null){
+    public static void open(Context context) {
+        if (context == null) {
             return;
         }
-        Intent intent= new Intent(context,MainActivity.class);
+        Intent intent = new Intent(context, MainActivity.class);
         context.startActivity(intent);
     }
 
@@ -61,6 +66,8 @@ public class MainActivity extends AbsBaseActivity {
     public void afterCreate(Bundle savedInstanceState) {
         initListener();
         initRefreshLayout();
+        updateManager = new UpdateManager(getString(R.string.app_name));
+        updateManager.checkNewApp(this);
     }
 
     @Override
@@ -102,22 +109,22 @@ public class MainActivity extends AbsBaseActivity {
         //等级
 
         mBinding.tvLevel.setOnClickListener(v -> {
-            IntroductionActivity.open(this,"medal","等级规则");
+            IntroductionActivity.open(this, "medal", "等级规则");
         });
-       //消息列表页
+        //消息列表页
         mBinding.bannerSwitch.setOnClickListener(v -> {
             MsgListActivity.open(this);
         });
 
         //个人中心
         mBinding.imgPhoto.setOnClickListener(v -> {
-            PersonalActivity.open(this,mUserInfoData);
+            PersonalActivity.open(this, mUserInfoData);
         });
 
         //我的试吃
         mBinding.layoutTryEat.setOnClickListener(v -> {
-            if(mUserInfoData==null) return;
-            MyTryEatGoodsListActivity.open(this,StringUtils.showPrice(mUserInfoData.getAmount()));
+            if (mUserInfoData == null) return;
+            MyTryEatGoodsListActivity.open(this, StringUtils.showPrice(mUserInfoData.getAmount()));
         });
         //信用信息
         mBinding.txtMoney.setOnClickListener(v -> {
@@ -125,10 +132,10 @@ public class MainActivity extends AbsBaseActivity {
         });
         //干点正事
         mBinding.layoutHelpPay.setOnClickListener(v -> {
-            if(mUserInfoData==null) return;
-            FriendListActivity.open(this,StringUtils.showPrice(mUserInfoData.getAmount()));
+            if (mUserInfoData == null) return;
+            FriendListActivity.open(this, StringUtils.showPrice(mUserInfoData.getAmount()));
         });
-          ;
+        ;
         //我的信用
         mBinding.layoutMycredit.setOnClickListener(v -> {
             MyCreditActivity.open(this);
@@ -136,39 +143,39 @@ public class MainActivity extends AbsBaseActivity {
         //好吃再来
         mBinding.layoutRepetEat.setOnClickListener(v -> {
 
-            if(mUserInfoData==null){
+            if (mUserInfoData == null) {
                 return;
             }
 
-            UserInfo.AddressListBean address =null;
+            UserInfo.AddressListBean address = null;
 
-            if(mUserInfoData.getAddressList()!=null && mUserInfoData.getAddressList().size()>0){
-                address=mUserInfoData.getAddressList().get(0);
+            if (mUserInfoData.getAddressList() != null && mUserInfoData.getAddressList().size() > 0) {
+                address = mUserInfoData.getAddressList().get(0);
             }
-            RepetTryEatOrderBook.open(this,address,StringUtils.showPrice(mUserInfoData.getAmount()));
+            RepetTryEatOrderBook.open(this, address, StringUtils.showPrice(mUserInfoData.getAmount()));
         });
     }
 
     /**
      * 获取用户信息
      */
-    public void getUserInfoRequest(Context context){
+    public void getUserInfoRequest(Context context) {
 
-       Map<String,String>  map=new HashMap<>();
+        Map<String, String> map = new HashMap<>();
 
         map.put("userId", SPUtilHelpr.getUserId());
 
         mSubscription.add(RetrofitUtils.getLoaderServer().getUserInfo("805506", StringUtils.getJsonToString(map))
                 .compose(RxTransformerHelper.applySchedulerResult(context))
 
-                .filter(userInfo -> userInfo!=null)
+                .filter(userInfo -> userInfo != null)
 
-                .subscribe(userInfo->{
-                    mUserInfoData=userInfo;
+                .subscribe(userInfo -> {
+                    mUserInfoData = userInfo;
 
                     mBinding.txtMoney.setText(StringUtils.showPrice(userInfo.getAmount()));
-                    if(mUserInfoData.getUserExt()!=null)
-                      ImgUtils.loadLogo(MainActivity.this, MyConfig.IMGURL+mUserInfoData.getUserExt().getPhoto(),mBinding.imgPhoto);
+                    if (mUserInfoData.getUserExt() != null)
+                        ImgUtils.loadLogo(MainActivity.this, MyConfig.IMGURL + mUserInfoData.getUserExt().getPhoto(), mBinding.imgPhoto);
 
                     mBinding.tvLevel.setText(StringUtils.getLevelInfo(userInfo.getLevel()));
 
@@ -176,12 +183,12 @@ public class MainActivity extends AbsBaseActivity {
                     //Shi否设置过支付密码
                     SPUtilHelpr.setIssetpaypwd(StringUtils.getIsSetPayPwd(mUserInfoData.getTradepwdFlag()));
 
-                    if(context == null){
+                    if (context == null) {
                         mBinding.refreshLayout.finishRefresh();
                     }
 
-                },throwable -> {
-                    if(context == null){
+                }, throwable -> {
+                    if (context == null) {
                         mBinding.refreshLayout.finishRefresh();
                     }
                 }));
@@ -192,31 +199,36 @@ public class MainActivity extends AbsBaseActivity {
     /**
      * 获取消息列表
      */
-    public void getMsgListRequest(){
-        Map<String,String> map=new HashMap<>();
-        map.put("channelType","4");
-        map.put("token",SPUtilHelpr.getUserToken());
+    public void getMsgListRequest() {
+        Map<String, String> map = new HashMap<>();
+        map.put("channelType", "4");
+        map.put("token", SPUtilHelpr.getUserToken());
         map.put("start", "1");
-        map.put("limit","1");
-        map.put("pushType","41");
-        map.put("toKind","4");
+        map.put("limit", "1");
+        map.put("pushType", "41");
+        map.put("toKind", "4");
 //        map.put("smsType","1");
-        map.put("status","1");
+        map.put("status", "1");
         map.put("fromSystemCode", MyConfig.SYSTEMCODE);
         map.put("toSystemCode", MyConfig.SYSTEMCODE);
 
-        mSubscription.add( RetrofitUtils.getLoaderServer().getMsgList("804040", StringUtils.getJsonToString(map))
+        mSubscription.add(RetrofitUtils.getLoaderServer().getMsgList("804040", StringUtils.getJsonToString(map))
                 .compose(RxTransformerHelper.applySchedulerResult(null))
-                .filter(data-> data!=null && data.getList()!=null && data.getList().size()>0)
-                .map(data-> data.getList().get(0))
-                .filter(data-> data!=null)
+                .filter(data -> data != null && data.getList() != null && data.getList().size() > 0)
+                .map(data -> data.getList().get(0))
+                .filter(data -> data != null)
                 .subscribe(dataModel -> {
-                  mBinding.bannerSwitch.setText(dataModel.getSmsTitle());
-                },throwable -> {
+                    mBinding.bannerSwitch.setText(dataModel.getSmsTitle());
+                }, throwable -> {
                 }));
 
     }
 
-
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (updateManager != null) {
+            updateManager.clear();
+        }
+    }
 }
